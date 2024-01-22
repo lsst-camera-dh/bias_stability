@@ -1,0 +1,18 @@
+includeConfigs:
+  - ${BIAS_STABILITY_DIR}/bps/bps_serial_median_config.yaml
+
+isrTaskName: isr
+pipelineYaml: ${EO_PIPE_DIR}/pipelines/eoBiasStability.yaml
+extraQgraphOptions: "{isr_QgraphOptions} --config biasStabilityPlots:acq_run=' ${BIAS_STABILITY_RUN}' --config biasStability:acq_run=' ${BIAS_STABILITY_RUN}'"
+
+instrument: ${INSTRUMENT_CLASS}
+
+payload:
+  calib_run: ${CALIB_RUN}
+  bias_stability_run: ${BIAS_STABILITY_RUN}
+  weekly: ${WEEKLY}
+  payload_modifier: ${PAYLOAD_MODIFIER}
+  inCollection: u/{operator}/dark_serial_median{payload_modifier}_{calib_run}_{weekly}
+  payloadName: eo_bias_stability_serial_median{payload_modifier}_{bias_stability_run}_{weekly}
+  butlerConfig: ${BUTLER_CONFIG}
+  dataQuery: "instrument='${INSTRUMENT_NAME}' and exposure.observation_type='dark' and exposure.science_program='{bias_stability_run}' ${SUBSELECTION}"

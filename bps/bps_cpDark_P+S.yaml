@@ -1,0 +1,17 @@
+includeConfigs:
+  - ${BIAS_STABILITY_DIR}/bps/bps_P+S_config.yaml
+
+isrTaskName: darkIsr
+extraQgraphOptions: "{isr_QgraphOptions} --config {isrTaskName}:doDefect=False --config {isrTaskName}:doCrosstalk=False --config cpDark:repair.doCosmicRay=False"
+
+pipelineYaml: "${CP_PIPE_DIR}/pipelines/${INSTRUMENT_CLASS_NAME}/cpDark.yaml"
+instrument: ${INSTRUMENT_CLASS}
+
+payload:
+  calib_run: ${CALIB_RUN}
+  weekly: ${WEEKLY}
+  payload_modifier: ${PAYLOAD_MODIFIER}
+  inCollection: u/{operator}/bias_P+S{payload_modifier}_{calib_run}_{weekly}
+  payloadName: dark_P+S{payload_modifier}_{calib_run}_{weekly}
+  butlerConfig: ${BUTLER_CONFIG}
+  dataQuery: "instrument='${INSTRUMENT_NAME}' and exposure.science_program='{calib_run}' and exposure.observation_type='dark' and exposure.observation_reason='dark' ${SUBSELECTION}"
