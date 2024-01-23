@@ -26,4 +26,4 @@ setup -r ${package_dir}/bias_stability
 export BIAS_STABILITY_SETUP=true
 
 export PAYLOAD_MODIFIER=""
-export DETECTOR_SELECTION=""
+export SUBSELECTION=""
