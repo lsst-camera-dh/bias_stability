@@ -1,8 +1,10 @@
 # bias_stability
 This package contains bps configuration files for running cp_pipe and eo_pipe pielines to do bias stability analyses on LSSTCam for several different ISR configurations.  These include three different overscan correction methods:
+
 1. Parallel + serial median-per-row
 2. Serial median-per-row only
 3. Serial mean only
+
 Combined bias and dark frames are generated in each case so that consistent ISR configurations are used at each step.
 
 ## Set up
@@ -10,13 +12,15 @@ Copy `scripts/setup_base.sh` to a standard location and edit the line
 ```
 package_dir=/sdf/home/j/jchiang/dev
 ```
-to point to the directory where the `eo_pipe` and `bias_stability` packages are installed.  Then copy `scripts/setup.sh` (renaming as appropriate), to a working directory and edit the line
+to point to the directory where the `eo_pipe` and `bias_stability` packages are installed, then copy `scripts/setup.sh`  to a working directory and edit the line
 ```
 source /sdf/home/j/jchiang/dev/bias_stability/scripts/setup_base.sh ${shared_stack_dir}
 ```
-to point at the location where you've installed `setup_base.sh`.  All of the site- and run-dependent configurations in the bps yaml files are set via environment variables in `setup.sh`, so these should be set accordingly for the runtime environment used by the bps submissions.
+to point at the location where you've installed `setup_base.sh`.
 
-## Example: Analyzing the full focalplane data at USDF for run 13555.
+All of the site- and run-dependent configurations in the bps yaml files are set via environment variables in `setup.sh`, so these should be set accordingly for the runtime environment used by the bps submissions.
+
+## Example: Analyzing the full focalplane data at USDF for run 13555
 We'll use B-protocol run 13550 to generate the combined bias and dark frames.  Here's an excerpt from the setup.sh file with the relevant environment variables set:
 ```
 version=`eups list lsst_distrib -s | sed 's/\s\+/\n/g' | grep [dw]_[0-9]*_[0-9]*`
