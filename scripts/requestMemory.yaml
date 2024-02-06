@@ -1,0 +1,5 @@
+pipetask:
+  biasStability:
+    requestMemory: 10000
+  biasStabilityPlots:
+    requestMemory: 10000
