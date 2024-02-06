@@ -1,0 +1,33 @@
+wmsServiceClass: lsst.ctrl.bps.parsl.ParslService
+computeSite: ccin2p3
+
+site:
+  ccin2p3:
+    class: ccin2p3.Ccin2p3_slurm
+    commandPrefix: '/sps/lsst/users/tguillem/Rubin/stack/w_2023_49/bias_stability/scripts/wrapper_apptainer.sh w_2023_49 \'
+    level1_memory: 6
+    level1_walltime: "72:00:00"
+    level1_max_blocks: 2000
+    level2_memory: 10
+    level2_walltime: "72:00:00"
+    level2_max_blocks: 2000
+
+includeConfigs:
+  - /sps/lsst/users/tguillem/Rubin/stack/w_2023_49/bias_stability/bps/stability/bps_1D_bias_config.yaml
+  - requestMemory.yaml
+
+isrTaskName: isr
+runQuantumCommand: "pipetask {runPreCmdOpts} run-qbb {butlerConfig} {fileDistributionEndPoint}{qgraphFile} --qgraph-node-id {qgraphNodeId} {extraRunQuantumOptions}"
+pipelineYaml: /sps/lsst/users/tguillem/Rubin/stack/w_2023_49/eo_pipe/pipelines/eoBiasStability.yaml
+extraQgraphOptions: "{isr_QgraphOptions} --config biasStabilityPlots:acq_run=' ${BIAS_STABILITY_RUN}' --config biasStability:acq_run=' ${BIAS_STABILITY_RUN}'"
+
+instrument: ${INSTRUMENT_CLASS}
+
+payload:
+  calib_run: ${CALIB_RUN}
+  weekly: ${WEEKLY}
+  payload_modifier: ${PAYLOAD_MODIFIER}
+  inCollection: "LSSTCam/raw/all,u/tguillem/run_6_validation/run_13550_master_bias_1D_w_2023_49_20240129a,LSSTCam/calib"
+  payloadName: bias_serial_mean_MB_1D{payload_modifier}_{calib_run}_{weekly}_$stamp
+  butlerConfig: ${BUTLER_CONFIG}
+  dataQuery: "instrument='${INSTRUMENT_NAME}' and exposure.science_program='{calib_run}' and exposure.observation_type='dark' and exposure.observation_reason='dark' ${SUBSELECTION}"
