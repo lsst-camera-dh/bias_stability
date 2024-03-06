@@ -1,1 +1,1 @@
-extraQgraphOptions: "--config {isrTaskName}:overscan.doParallelOverscan=False --config {isrTaskName}:overscan.fitType='MEAN' --config {isrTaskName}:overscan.leadingColumnsToSkip=2 --config {isrTaskName}:overscan.leadingRowsToSkip=2"
+extraQgraphOptions: "--config {isrTaskName}overscan.doParallelOverscan=False --config {isrTaskName}overscan.fitType='MEAN' --config {isrTaskName}overscan.leadingColumnsToSkip=2 --config {isrTaskName}overscan.leadingRowsToSkip=2"

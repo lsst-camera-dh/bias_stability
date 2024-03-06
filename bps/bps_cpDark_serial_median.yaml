@@ -1,8 +1,8 @@
 includeConfigs:
   - ${BIAS_STABILITY_DIR}/bps/bps_serial_median_config.yaml
 
-isrTaskName: darkIsr
-extraQgraphOptions: "{isr_QgraphOptions} --config {isrTaskName}:doDefect=False --config {isrTaskName}:doCrosstalk=False --config cpDark:repair.doCosmicRay=False"
+isrTaskName: darkIsr:
+extraQgraphOptions: "{isr_QgraphOptions} --config {isrTaskName}doDefect=False --config {isrTaskName}doCrosstalk=False --config cpDark:repair.doCosmicRay=False"
 
 pipelineYaml: "${CP_PIPE_DIR}/pipelines/${INSTRUMENT_CLASS_NAME}/cpDark.yaml"
 instrument: ${INSTRUMENT_CLASS}
