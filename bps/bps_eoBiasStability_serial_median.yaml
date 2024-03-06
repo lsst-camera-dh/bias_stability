@@ -1,7 +1,7 @@
 includeConfigs:
   - ${BIAS_STABILITY_DIR}/bps/bps_serial_median_config.yaml
 
-isrTaskName: isr
+isrTaskName: biasStability:isr.
 pipelineYaml: ${EO_PIPE_DIR}/pipelines/eoBiasStability.yaml
 extraQgraphOptions: "{isr_QgraphOptions} --config biasStabilityPlots:acq_run=' ${BIAS_STABILITY_RUN}' --config biasStability:acq_run=' ${BIAS_STABILITY_RUN}'"
 

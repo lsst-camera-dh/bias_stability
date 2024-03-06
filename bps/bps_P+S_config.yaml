@@ -1,1 +1,1 @@
-isr_QgraphOptions: "--config biasStability:isr.overscan.doParallelOverscan=True --config biasStability:isr.overscan.fitType='MEDIAN_PER_ROW' --config biasStability:isr.overscan.leadingColumnsToSkip=2 --config biasStability:isr.overscan.leadingRowsToSkip=2"
+isr_QgraphOptions: "--config {isrTaskName}overscan.doParallelOverscan=True --config {isrTaskName}overscan.fitType='MEDIAN_PER_ROW' --config {isrTaskName}overscan.leadingColumnsToSkip=2 --config {isrTaskName}overscan.leadingRowsToSkip=2"
